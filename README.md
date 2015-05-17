@@ -1,2 +1,126 @@
 # Repository-10
-Modify class Date of Fig. 8.7 to perform error checking on the initializer values for instance variables month, day and year (currently it validates only the month and day). Provide a method nextDay to increment the day by one. The Date object should remain in a consistent state. Write a program that tests method nextDay in a loop that prints the date during each iteration to illustrate that the method works correctly. Test the following cases: a) incrementing into the next month and b) incrementing into the next year.
+Write an enum type TrafficLight, whose constants (RED, GREEN, YELLOW) take one parameter— the duration of the light.Write a program to test the TrafficLight enum so that it displays the enum constants and their durations.
+
+
+public class Date 
+{
+	private int day;
+	private int month;
+	private int year;
+	private String Month;
+	private int daysOfYear;
+	private int daysInMonth;
+	//private int MonthDays[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+	public Date(int month, int day, int year)
+	{
+		this.day=day;
+		this.month=month;
+		this.year=year;
+	}
+	public Date(String Month,int day,int year)
+	{
+		this.Month=Month;
+		this.day=day;
+		this.year=year;
+	}
+	public Date(int daysOfYear,int year)
+	{
+		this.daysOfYear=daysOfYear;
+		this.year=year;
+	}
+	public void setmonth(int M)
+	{
+		month=M;
+	}
+	public int getmonth()
+	{
+		return month;
+	}
+	public void setday(int D)
+	{
+		day=D;
+	}
+	public int getday()
+	{
+		return day;
+	}
+	public void setyear(int Y)
+	{
+		year=Y;
+	}
+	public int getyear()
+	{
+		return year;
+	}
+	/*public void setdaysInMonth(int daysInMonth)
+	{
+		this.daysInMonth=daysInMonth;
+	}
+	public int getdaysInMonth()
+	{
+		return daysInMonth;
+	}*/
+	/*public void daysOfYear(int daysOfYear)
+	{
+		this.daysOfYear=daysOfYear;
+	}
+	public int getdaysOfYear()
+	{
+		return daysOfYear;
+	}*/
+	public String toString()
+	{
+		return String.format(this.getmonth()+"/"+this.getday()+"/"+this.getyear());
+	}
+	public void setMonth(String m)
+	{
+		Month=m;
+	}
+	public String getMonth()
+	{
+		return Month;
+	}
+	public String toString1(int i)
+	{	
+	
+		String months[]={"January","Feb","March", "April", "May", "June", "July", "August", "September", "October",
+								"Novemeber", "December"};
+		return String.format(months[i-1]+" "+this.getday()+","+this.getyear());
+	}
+	public String toString2()
+    {
+        int j;
+        int MonthDays[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+        int daysOfYear[]=new int[365];
+        for(j=0;j<MonthDays.length;j++)
+        {
+            daysOfYear[j]=j+1;
+        }
+        return String.format(MonthDays[daysOfYear[j+1]]+","+this.getyear());
+    }
+	
+}
+// Test Program
+import java.util.Scanner;
+
+
+public class DateTest
+{
+	public static void main (String args[])
+	{
+		int j=0;
+		Scanner input=new Scanner(System.in);
+		System. out.print("Enter Day: ");
+		int Day=input.nextInt();
+		System. out.print("Enter Month: ");
+		int Month=input.nextInt();
+		System. out.print("Enter Year: ");
+		int Year=input.nextInt();
+		System.out.println("Display of Date is as follows");
+		Date date=new Date( Month, Day, Year);
+		System.out.println("Date displayed in MM/DD/YYYY: "+date);
+		System.out.println("Date displayed in MM/DD/YYYY: "+date.toString1(Month));
+		System.out.printf("Date displayed in DDD/YYYY:"+date.toString2());
+	}
+}
+
